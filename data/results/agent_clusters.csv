@@ -1,0 +1,31 @@
+agent,role,flash,smoke,recon,healing,mobility,traps,walls,crowd_control,cluster,traits
+Breach,Initiator,1,0,0,0,0,0,1,1,Flash + Crowd Control,"flash, walls, crowd control"
+Gekko,Initiator,1,0,0,0,0,0,0,1,Flash + Crowd Control,"flash, crowd control"
+Hush,Duelist,1,0,0,0,1,0,0,1,Flash + Crowd Control,"flash, mobility, crowd control"
+KAY/O,Initiator,1,0,0,0,0,0,0,1,Flash + Crowd Control,"flash, crowd control"
+Reyna,Duelist,1,0,0,1,0,0,0,0,Flash + Crowd Control,"flash, healing"
+Skye,Initiator,1,0,0,1,0,0,0,1,Flash + Crowd Control,"flash, healing, crowd control"
+Vyse,Sentinel,1,0,0,0,0,0,1,1,Flash + Crowd Control,"flash, walls, crowd control"
+Chamber,Sentinel,0,0,0,0,1,0,0,1,Mobility,"mobility, crowd control"
+Killjoy,Sentinel,0,0,0,0,0,1,0,0,Mobility,traps
+Raze,Duelist,0,0,0,0,0,0,0,0,Mobility,
+Sova,Initiator,0,0,1,0,0,0,0,0,Mobility,recon
+Veto,Sentinel,0,0,0,1,1,0,0,1,Mobility,"healing, mobility, crowd control"
+Waylay,Duelist,0,0,1,0,1,0,0,0,Mobility,"recon, mobility"
+Yoru,Duelist,1,0,1,0,1,0,0,0,Mobility,"flash, recon, mobility"
+Cypher,Sentinel,0,1,1,0,0,1,0,1,Recon + Crowd Control,"smoke, recon, traps, crowd control"
+Deadlock,Sentinel,0,0,1,0,0,1,1,1,Recon + Crowd Control,"recon, traps, walls, crowd control"
+Fade,Initiator,1,0,1,0,0,0,0,1,Recon + Crowd Control,"flash, recon, crowd control"
+Tejo,Initiator,0,0,1,0,0,0,0,1,Recon + Crowd Control,"recon, crowd control"
+Brimstone,Controller,0,1,0,0,0,0,0,0,Smoke + Healing,smoke
+Clove,Controller,0,1,0,1,0,0,0,0,Smoke + Healing,"smoke, healing"
+Jett,Duelist,0,1,0,0,1,0,0,0,Smoke + Healing,"smoke, mobility"
+Miks,Controller,0,1,0,1,0,0,0,1,Smoke + Healing,"smoke, healing, crowd control"
+Omen,Controller,1,1,0,0,1,0,0,0,Smoke + Healing,"flash, smoke, mobility"
+Phoenix,Duelist,1,1,1,1,0,0,1,0,Smoke + Healing,"flash, smoke, recon, healing, walls"
+Astra,Controller,0,1,0,0,0,0,1,1,Walls + Smoke,"smoke, walls, crowd control"
+Harbor,Controller,1,1,0,0,0,0,1,1,Walls + Smoke,"flash, smoke, walls, crowd control"
+Iso,Duelist,0,1,0,0,0,0,1,1,Walls + Smoke,"smoke, walls, crowd control"
+Neon,Duelist,0,1,0,0,0,0,1,1,Walls + Smoke,"smoke, walls, crowd control"
+Sage,Sentinel,0,0,0,1,0,0,1,1,Walls + Smoke,"healing, walls, crowd control"
+Viper,Controller,0,1,0,0,0,0,1,0,Walls + Smoke,"smoke, walls"

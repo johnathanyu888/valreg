@@ -1,7 +1,6 @@
-"""valreg prototype: pro pick-rate forecasts with an 80% margin of error.
+"""valreg: Valorant pro meta tracker and pick-rate forecast.
 
-Reads only precomputed files in data/results/ (made by analysis/forecast.py).
-No live data fetching happens here.
+Reads only precomputed files in data/results/ (made by run_pipeline.py). No live fetching.
 
 Run from the project folder:
     streamlit run app/streamlit_app.py
@@ -14,169 +13,190 @@ import pandas as pd
 import streamlit as st
 
 RESULTS = Path(__file__).resolve().parent.parent / "data" / "results"
+RANGE_COLOR = "#8da4c4"
+ACTUAL_COLOR = "#e8743b"
 
-MODEL_LABELS = {
-    "same_as_last": "Baseline: same as last event",
-    "rolling_avg_3": "Baseline: average of last 3",
-    "linear_regression": "Linear regression",
-    "median_linear": "Median linear regression",
-    "gradient_boosting": "Gradient boosting",
-}
-BASELINES = ["same_as_last", "rolling_avg_3"]
-
-st.set_page_config(page_title="valreg: Valorant pro pick-rate forecast", layout="wide")
+st.set_page_config(page_title="valreg: Valorant pro meta", layout="wide")
 
 
 @st.cache_data
 def load():
-    scores = pd.read_csv(RESULTS / "model_scores.csv")
-    by_phase = pd.read_csv(RESULTS / "model_scores_by_phase.csv")
-    backtest = pd.read_csv(RESULTS / "backtest_predictions.csv")
-    forecast = pd.read_csv(RESULTS / "next_phase_forecast.csv")
-    weights = pd.read_csv(RESULTS / "linear_weights.csv")
-    for df in (scores, by_phase, backtest, forecast):
-        df["model_label"] = df["model"].map(MODEL_LABELS)
-    return scores, by_phase, backtest, forecast, weights
+    files = ["next_phase_forecast", "phase_pick_rates", "agent_pick_rates", "agent_clusters",
+             "backtest_predictions", "test_scores_by_phase", "model_scores"]
+    return {f: pd.read_csv(RESULTS / f"{f}.csv") for f in files}
 
 
-scores, by_phase, backtest, forecast, weights = load()
-best = forecast.loc[forecast["best_model"], "model"].iloc[0]
-s = scores.set_index("model")
-base = s.loc[BASELINES, "mae"].idxmin()
+def short(name):
+    """'Champions Tour 2024: Masters Shanghai' -> '2024 Masters Shanghai'; 'VCT 2025: Stage 1 (all regions)' -> '2025 Stage 1'."""
+    s = name.replace(" (all regions)", "").replace("Champions Tour ", "").replace("VCT ", "").replace("Valorant ", "")
+    if ": " in s:
+        year, rest = s.split(": ", 1)
+        return f"{year} {rest.replace(' / ' + year + ': ', ' / ')}"
+    for y in ("2023", "2024", "2025", "2026"):
+        if s.endswith(" " + y):
+            return f"{y} {s[:-5]}"
+    return s
 
-st.title("valreg: Valorant pro pick-rate forecast")
+
+d = load()
+for key in ("phase_pick_rates", "agent_pick_rates", "backtest_predictions"):
+    d[key]["phase_name"] = d[key]["phase_name"].map(short)
+forecast, phases, agents_hist = d["next_phase_forecast"], d["phase_pick_rates"], d["agent_pick_rates"]
+clusters, backtest, scores = d["agent_clusters"], d["backtest_predictions"], d["model_scores"]
+chosen = scores[scores["chosen"]].iloc[0]
+naive = scores.set_index("model").loc["same_as_last"]
+latest_step = phases["step"].max()
+latest_name = phases.loc[phases["step"] == latest_step, "phase_name"].iloc[0]
+margin = forecast["margin"].iloc[0]
+
+st.title("valreg: Valorant pro meta")
 st.caption(
-    "Prototype. Pro data: Kaggle 'Valorant Champion Tour 2021-2026 Data' (scraped from vlr.gg), "
-    "last updated 2026-06-26. Agents and maps: valorant-api.com. Not affiliated with Riot Games."
+    "Pro pick rates from the Kaggle 'Valorant Champion Tour 2021-2026 Data' (scraped from vlr.gg), "
+    f"data up to {latest_name} (dataset updated 2026-06-26). Agents and maps from valorant-api.com. "
+    "Not affiliated with Riot Games."
 )
 
-c1, c2, c3, c4 = st.columns([1.6, 1, 1, 1])
-c1.metric("Best model", MODEL_LABELS[best].replace(" regression", ""))
-c2.metric("Typical miss (MAE)", f"{s.loc[best, 'mae']:.1f} pts",
-          delta=f"{s.loc[best, 'mae'] - s.loc[base, 'mae']:+.2f} vs baseline", delta_color="inverse")
-c3.metric("80% range actually covered", f"{s.loc[best, 'coverage']:.0%}")
-c4.metric("Test phases beating baseline", f"{int(s.loc[best, 'phases_won'])} of {int(s.loc[best, 'phases'])}")
+c1, c2, c3, c4 = st.columns([1.5, 1, 1, 1])
+c1.metric("Forecasting (2026)", "Masters London")
+c2.metric("Margin of error (80%)", f"±{margin:.0f} pts")
+c3.metric("Past forecasts inside their range", f"{chosen['test_coverage']:.0%}")
+c4.metric("Pro phases analyzed (2023-26)", f"{phases['step'].nunique()}")
 
-tab_forecast, tab_accuracy, tab_backtest, tab_about = st.tabs(
-    ["Next event forecast", "How accurate is it?", "Check past predictions", "How it works"])
+tab_fc, tab_trends, tab_styles, tab_acc = st.tabs(["Forecast", "Meta trends", "Playstyles", "Accuracy & method"])
 
-# ---------------- Next event forecast ----------------
-with tab_forecast:
-    st.subheader("Forecast for the next phase after VCT 2026 Stage 1 (Masters London 2026)")
+# ---------------- Forecast ----------------
+with tab_fc:
+    st.subheader("Predicted pick rates for Masters London 2026")
     st.write(
-        "Predicted pick rate for each agent on each map, with an **80% range**: in testing on "
-        f"2025-2026 events, the real value landed inside this kind of range "
-        f"{s.loc[best, 'coverage']:.0%} of the time. The map pool for the next event isn't in the "
-        "data, so these are the 8 maps played in VCT 2026 Stage 1."
+        f"How often each agent is expected to be picked on each map, with an **80% range**: "
+        f"forecasts made the same way for 2025-2026 events landed inside their range "
+        f"{chosen['test_coverage']:.0%} of the time. The next event's map pool isn't in the data yet, "
+        f"so these are the maps played in {latest_name}."
     )
     left, right = st.columns([1, 3])
     with left:
         map_name = st.selectbox("Map", sorted(forecast["map_name"].unique()))
-        model = st.selectbox("Model", list(MODEL_LABELS), index=list(MODEL_LABELS).index(best),
-                             format_func=MODEL_LABELS.get)
         top_n = st.slider("Agents shown", 5, 30, 12)
-    f = (forecast[(forecast["map_name"] == map_name) & (forecast["model"] == model)]
+        role_filter = st.multiselect("Roles", sorted(forecast["role"].unique()), default=sorted(forecast["role"].unique()))
+    f = (forecast[(forecast["map_name"] == map_name) & forecast["role"].isin(role_filter)]
          .sort_values("predicted", ascending=False).head(top_n))
     with right:
         y = alt.Y("agent:N", sort=list(f["agent"]), title=None)
-        bars = alt.Chart(f).mark_rule(strokeWidth=8, opacity=0.6, color="#8da4c4").encode(
-            y=y, x=alt.X("low:Q", title="Pick rate (%)", scale=alt.Scale(domain=[0, 100])), x2="high:Q",
-            tooltip=["agent", "role", alt.Tooltip("predicted:Q", format=".1f"),
-                     alt.Tooltip("low:Q", format=".1f"), alt.Tooltip("high:Q", format=".1f"),
-                     alt.Tooltip("prev_pick_rate:Q", title="last time", format=".1f")])
-        points = alt.Chart(f).mark_point(filled=True, size=90).encode(y=y, x="predicted:Q", color="role:N")
-        last = alt.Chart(f).mark_tick(color="gray", thickness=2, size=14).encode(y=y, x="prev_pick_rate:Q")
-        st.altair_chart((bars + points + last).properties(height=28 * len(f) + 40), width="stretch")
-        st.caption("Dot = prediction, blue bar = 80% range, grey tick = pick rate at its last appearance.")
-    st.dataframe(
-        f[["agent", "role", "prev_pick_rate", "predicted", "low", "high"]].rename(columns={
-            "prev_pick_rate": "Last time (%)", "predicted": "Predicted (%)", "low": "80% low", "high": "80% high"}),
-        hide_index=True, width="stretch")
+        tip = ["agent", "role", alt.Tooltip("predicted:Q", title="forecast %", format=".1f"),
+               alt.Tooltip("low:Q", title="80% low", format=".1f"), alt.Tooltip("high:Q", title="80% high", format=".1f"),
+               alt.Tooltip("prev_pick_rate:Q", title="last phase %", format=".1f")]
+        bars = alt.Chart(f).mark_rule(strokeWidth=9, opacity=0.6, color=RANGE_COLOR).encode(
+            y=y, x=alt.X("low:Q", title="Pick rate (%)", scale=alt.Scale(domain=[0, 100])), x2="high:Q", tooltip=tip)
+        dots = alt.Chart(f).mark_point(filled=True, size=100, opacity=1).encode(y=y, x="predicted:Q", color="role:N", tooltip=tip)
+        last = alt.Chart(f).mark_tick(color="gray", thickness=2, size=16).encode(y=y, x="prev_pick_rate:Q")
+        st.altair_chart((bars + dots + last).properties(height=30 * max(len(f), 1) + 40), width="stretch")
+        st.caption("Dot = forecast · blue bar = 80% range · grey tick = pick rate last phase.")
 
-# ---------------- Accuracy ----------------
-with tab_accuracy:
-    st.subheader("Models against the baselines (walk-forward test on 2025-2026)")
+    st.subheader("Biggest expected changes")
+    moves = forecast.assign(change=forecast["predicted"] - forecast["prev_pick_rate"])
+    up, down = st.columns(2)
+    cols = {"agent": "Agent", "map_name": "Map", "prev_pick_rate": "Last phase (%)", "predicted": "Forecast (%)",
+            "change": "Change (pts)"}
+    up.write("**Expected to rise**")
+    up.dataframe(moves.nlargest(8, "change")[list(cols)].rename(columns=cols).round(1), hide_index=True, width="stretch")
+    down.write("**Expected to fall**")
+    down.dataframe(moves.nsmallest(8, "change")[list(cols)].rename(columns=cols).round(1), hide_index=True, width="stretch")
+    st.caption("Forecasts lean toward the agent's recent average, so these are mostly agents expected to drift back "
+               "after an unusually high or low phase, not predictions of patch changes.")
+
+# ---------------- Meta trends ----------------
+with tab_trends:
+    st.subheader("Agent popularity across pro phases, 2023-2026")
+    st.write("Pick rate across all maps, with every event in a phase combined (weighted by maps played).")
+    order = list(agents_hist.drop_duplicates("step").sort_values("step")["phase_name"])
+    latest_top = (agents_hist[agents_hist["step"] == agents_hist["step"].max()]
+                  .nlargest(5, "pick_rate")["agent"].tolist())
+    chosen_agents = st.multiselect("Agents", sorted(agents_hist["agent"].unique()), default=latest_top)
+    a = agents_hist[agents_hist["agent"].isin(chosen_agents)]
+    st.altair_chart(alt.Chart(a).mark_line(point=True).encode(
+        x=alt.X("phase_name:N", sort=order, title=None,
+                axis=alt.Axis(labelAngle=-40, labelLimit=260, labelOverlap=False)),
+        y=alt.Y("pick_rate:Q", title="Pick rate (%)", scale=alt.Scale(domain=[0, 100])),
+        color=alt.Color("agent:N", title="Agent"),
+        tooltip=["agent", "phase_name", alt.Tooltip("pick_rate:Q", format=".1f"), "maps_played"],
+    ).properties(height=420), width="stretch")
+
+    st.subheader(f"Most picked agents per map in {latest_name}")
+    m = st.selectbox("Map ", sorted(phases.loc[phases["step"] == latest_step, "map_name"].unique()))
+    top = phases[(phases["step"] == latest_step) & (phases["map_name"] == m)].nlargest(10, "pick_rate")
+    st.altair_chart(alt.Chart(top).mark_bar().encode(
+        y=alt.Y("agent:N", sort="-x", title=None), x=alt.X("pick_rate:Q", title="Pick rate (%)", scale=alt.Scale(domain=[0, 100])),
+        color="role:N", tooltip=["agent", "role", alt.Tooltip("pick_rate:Q", format=".1f"), "maps_played"],
+    ).properties(height=320), width="stretch")
+    st.caption(f"Based on {int(top['maps_played'].max()) if len(top) else 0} maps of {m} played in that phase.")
+
+# ---------------- Playstyles ----------------
+with tab_styles:
+    st.subheader("Agent playstyle groups")
     st.write(
-        "Each phase from 2025 on was predicted using **only earlier phases**, the way a real forecast "
-        "would be made. **MAE** = the average miss in percentage points (lower is better). "
-        "'Hard rows' leave out the easy cases where an agent had 0% last time and 0% again "
-        f"({1 - backtest[(backtest['model'] == best)].eval('pick_rate == 0 and prev_pick_rate == 0').mean():.0%} "
-        "of rows are hard)."
+        "Agents grouped by what their abilities do (flash, smoke, recon, healing, mobility, traps, walls, "
+        "crowd control), using k-means clustering. **First draft:** traits come from keywords in the "
+        "official ability descriptions, so some tags are off, and the groups overlap a lot."
     )
-    table = scores.assign(model=scores["model"].map(MODEL_LABELS))[
-        ["model", "mae", "mae_nontrivial", "coverage", "width", "phases_won", "phases"]].rename(columns={
-            "model": "Model", "mae": "MAE (all rows)", "mae_nontrivial": "MAE (hard rows)",
-            "coverage": "80% range coverage", "width": "Range width (pts)",
-            "phases_won": "Phases beating baseline", "phases": "Test phases"})
-    st.dataframe(table.style.format({"MAE (all rows)": "{:.2f}", "MAE (hard rows)": "{:.2f}",
-                                     "80% range coverage": "{:.0%}", "Range width (pts)": "{:.1f}"}),
-                 hide_index=True, width="stretch")
-    gain = s.loc[base, "mae"] - s.loc[best, "mae"]
+    latest_overall = agents_hist[agents_hist["step"] == agents_hist["step"].max()][["agent", "pick_rate"]]
+    cl = clusters.merge(latest_overall, on="agent", how="left").fillna({"pick_rate": 0})
+    groups = sorted(cl["cluster"].unique())
+    cols_ = st.columns(len(groups))
+    for col, g in zip(cols_, groups):
+        members = cl[cl["cluster"] == g].sort_values("pick_rate", ascending=False)
+        col.markdown(f"**{g}**")
+        col.dataframe(members[["agent", "pick_rate"]].rename(
+            columns={"agent": "Agent", "pick_rate": "Pick %"}).round(0),
+            hide_index=True, width="stretch")
+    st.caption(f"Pick % = pick rate across all maps in {latest_name}.")
+    with st.expander("Traits per agent"):
+        st.dataframe(cl[["agent", "role", "cluster", "traits"]], hide_index=True, width="stretch")
+
+# ---------------- Accuracy & method ----------------
+with tab_acc:
+    st.subheader("How accurate are the forecasts?")
+    st.write(
+        f"Every 2025-2026 phase was forecast using **only earlier data**, exactly as the Masters London forecast "
+        f"was made. On average a forecast missed by **{chosen['test_mae']:.1f} percentage points**, and "
+        f"**{chosen['test_coverage']:.0%}** of real values landed inside the 80% range."
+    )
     st.info(
-        f"**Honest reading:** the best model improves on '{MODEL_LABELS[base]}' by only "
-        f"{gain:.2f} percentage points and wins {int(s.loc[best, 'phases_won'])} of "
-        f"{int(s.loc[best, 'phases'])} test phases. That is roughly a tie: with the features available "
-        "so far (previous pick rate, rolling average, role, map), the last event is almost as good a "
-        "guess as any model. Release dates and patch changes are not in the model yet."
+        f"**Honest context:** simply assuming each agent keeps last phase's pick rate misses by "
+        f"{naive['test_mae']:.1f} points. The forecast is only slightly better than that "
+        f"({naive['test_mae'] - chosen['test_mae']:.2f} points), so the pro meta is largely 'like last time, "
+        "drifting back toward normal'. Patch changes, which likely drive the big shifts, aren't in the data yet."
     )
-    phase_chart = by_phase.assign(test_phase=by_phase["year"].astype(str) + " phase " + by_phase["phase"].astype(str))
-    st.altair_chart(
-        alt.Chart(phase_chart).mark_line(point=True).encode(
-            x=alt.X("test_phase:N", title="Test phase", sort=None),
-            y=alt.Y("mae:Q", title="MAE (percentage points)"),
-            color=alt.Color("model_label:N", title="Model"),
-            tooltip=["model_label", "test_phase", alt.Tooltip("mae:Q", format=".2f"), "rows"],
-        ).properties(height=360), width="stretch")
-    with st.expander("What the linear regression learned"):
-        st.write(
-            "Prediction = intercept + each weight × its input. Role and map inputs are 1 if they apply, "
-            "else 0. The model leans almost entirely on the previous pick rate and the rolling average."
-        )
-        st.dataframe(weights.assign(feature=weights["feature"].str.replace("categories__", "").str.replace("numbers__", "")),
-                     hide_index=True)
-
-# ---------------- Backtest explorer ----------------
-with tab_backtest:
-    st.subheader("Predicted vs actual, event by event")
-    a, b, c = st.columns(3)
-    agent = a.selectbox("Agent", sorted(backtest["agent"].unique()), index=sorted(backtest["agent"].unique()).index("Viper"))
-    maps_for_agent = sorted(backtest.loc[backtest["agent"] == agent, "map_name"].unique())
-    map_b = b.selectbox("Map ", maps_for_agent)
-    model_b = c.selectbox("Model ", list(MODEL_LABELS), index=list(MODEL_LABELS).index(best),
-                          format_func=MODEL_LABELS.get)
-    h = backtest[(backtest["agent"] == agent) & (backtest["map_name"] == map_b) & (backtest["model"] == model_b)].copy()
-    h["event_label"] = h["event"].str.replace("Champions Tour ", "").str.replace("Valorant ", "")
-    order = list(h.sort_values(["year", "phase", "event"])["event_label"])
-    x = alt.X("event_label:N", sort=order, title=None,
-              axis=alt.Axis(labelAngle=-40, labelLimit=240, labelOverlap=False))
-    band = alt.Chart(h).mark_bar(opacity=0.55, size=14, color="#8da4c4").encode(x=x, y=alt.Y("low:Q", title="Pick rate (%)",
-                                                                             scale=alt.Scale(domain=[0, 100])), y2="high:Q")
-    pred = alt.Chart(h).mark_point(shape="diamond", size=80, filled=True).encode(
-        x=x, y="predicted:Q", tooltip=["event", alt.Tooltip("predicted:Q", format=".1f"),
-                                       alt.Tooltip("low:Q", format=".1f"), alt.Tooltip("high:Q", format=".1f"),
-                                       "pick_rate", "maps_played"])
-    actual = alt.Chart(h).mark_point(color="#e8743b", size=60, filled=True).encode(x=x, y="pick_rate:Q")
+    a1, a2, a3 = st.columns(3)
+    agent = a1.selectbox("Agent ", sorted(backtest["agent"].unique()), index=sorted(backtest["agent"].unique()).index("Viper"))
+    maps_for = sorted(backtest.loc[backtest["agent"] == agent, "map_name"].unique())
+    map_b = a2.selectbox("Map  ", maps_for, index=maps_for.index("Split") if "Split" in maps_for else 0)
+    h = backtest[(backtest["agent"] == agent) & (backtest["map_name"] == map_b)].sort_values("step")
+    x = alt.X("phase_name:N", sort=list(h["phase_name"]), title=None,
+              axis=alt.Axis(labelAngle=-40, labelLimit=260, labelOverlap=False))
+    band = alt.Chart(h).mark_bar(opacity=0.55, size=16, color=RANGE_COLOR).encode(
+        x=x, y=alt.Y("low:Q", title="Pick rate (%)", scale=alt.Scale(domain=[0, 100])), y2="high:Q")
+    pred = alt.Chart(h).mark_point(shape="diamond", size=90, filled=True).encode(
+        x=x, y="predicted:Q", tooltip=["phase_name", alt.Tooltip("predicted:Q", format=".1f"),
+                                       alt.Tooltip("pick_rate:Q", title="actual", format=".1f"), "maps_played"])
+    actual = alt.Chart(h).mark_point(color=ACTUAL_COLOR, size=70, filled=True).encode(x=x, y="pick_rate:Q")
     st.altair_chart((band + pred + actual).properties(height=380), width="stretch")
-    st.caption("Diamond = prediction, blue bar = 80% range, orange dot = what actually happened. "
-               "Small events (few maps played) are noisy, so big misses there are expected.")
     inside = h["pick_rate"].between(h["low"], h["high"]).mean() if len(h) else float("nan")
-    st.write(f"{len(h)} test events for {agent} on {map_b}; actual value inside the range in {inside:.0%} of them.")
+    st.caption(f"Diamond = forecast · blue bar = 80% range · orange dot = what happened. "
+               f"{agent} on {map_b}: inside the range in {inside:.0%} of {len(h)} phases.")
 
-# ---------------- About ----------------
-with tab_about:
     st.subheader("How it works")
-    st.markdown(f"""
-1. **Collect:** agent and map lists from valorant-api.com; pro pick rates from the Kaggle VCT dataset.
+    st.markdown("""
+1. **Collect:** agent and map lists from valorant-api.com; pro pick rates from the Kaggle VCT dataset;
+   season order and event dates entered by hand (dates from Wikipedia).
 2. **Clean:** keep whole-event figures for the 49 top-tier events of 2023-2026, fix types, match names
    to IDs, and order events by season phase (Kickoff, Masters, Stage 1, Masters, Stage 2, Champions).
-3. **Training table:** one row per agent, map and event. Inputs: the pick rate at the agent's last
-   appearance on that map, and the average of its last 3 appearances, plus role and map. Built only
-   from earlier phases.
-4. **Walk-forward test:** predict each 2025-2026 phase using only earlier phases; score with MAE.
-5. **80% range:** before each phase, the model predicts the phase before it; the 80th percentile of
-   those misses becomes the ± margin (split conformal prediction). Coverage checks it's honest.
+3. **Combine:** each phase's events are merged per agent and map, weighted by maps played.
+4. **Forecast:** a median linear regression predicts next phase's pick rate from last phase's pick rate,
+   the average of the last 3 appearances, role and map. It was chosen over other models by testing on
+   2024 only, then checked once on 2025-2026.
+5. **Margin of error:** the 80th percentile of the forecast's misses over the previous 3 phases.
 
-**Limitations:** pick rates at small events rest on few maps; the data stops in June 2026 (no Hush,
-no Summit); release dates and patch notes are not yet in the model; the forecast assumes the next
-event uses the same maps as Stage 1.
+**Limitations:** single-region pick rates rest on few maps and are noisy; the data stops in June 2026
+(no Hush, no Summit); patch changes aren't modeled; the next event's map pool is assumed to match Stage 1;
+Reddit, vlr.gg and Riot's sites weren't used because their terms don't allow automated collection.
 """)

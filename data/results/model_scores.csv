@@ -1,6 +1,6 @@
-model,rows,mae,mae_nontrivial,coverage,width,phases_won,phases
-same_as_last,4467.0,9.5713,15.8586,0.7663,20.6686,0,9
-rolling_avg_3,4467.0,10.5615,16.3945,0.7846,24.5619,0,9
-linear_regression,4467.0,10.1146,15.4551,0.7864,22.8271,0,9
-median_linear,4467.0,9.504,15.4774,0.7761,20.958,5,9
-gradient_boosting,4467.0,10.2253,15.3314,0.7855,22.4954,1,9
+model,baseline,val_mae,val_mae_nontrivial,val_coverage,val_width,test_rows,test_mae,test_mae_nontrivial,test_coverage,test_width,chosen
+same_as_last,True,6.8369,9.4887,0.8008,16.6039,1692,8.5438,12.0972,0.7831,19.1735,False
+rolling_avg_3,True,7.1713,9.6762,0.7947,17.6426,1692,9.5245,12.9676,0.7931,22.7653,False
+median_linear_v1,False,6.8232,9.3665,0.8089,17.7569,1692,8.4264,11.8151,0.7807,18.9434,True
+median_linear,False,6.8305,9.3601,0.811,17.7757,1692,8.4287,11.8023,0.7801,18.9294,False
+gradient_boosting,False,7.4367,9.7167,0.811,18.5334,1692,8.8553,11.8475,0.789,20.6963,False

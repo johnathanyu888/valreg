@@ -1,0 +1,514 @@
+step,phase_name,agent,role,pick_rate,maps_played
+0,Champions Tour 2023: Lock-In Sao Paulo,Iso,Duelist,0.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Cypher,Sentinel,16.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Clove,Controller,0.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Killjoy,Sentinel,70.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Chamber,Sentinel,3.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Sova,Initiator,39.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Astra,Controller,32.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Sage,Sentinel,18.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Breach,Initiator,32.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,KAY/O,Initiator,41.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Skye,Initiator,24.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Viper,Controller,40.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Yoru,Duelist,1.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Omen,Controller,39.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Harbor,Controller,12.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Brimstone,Controller,10.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Reyna,Duelist,1.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Jett,Duelist,60.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Neon,Duelist,7.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Deadlock,Sentinel,0.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Fade,Initiator,24.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Gekko,Initiator,0.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Phoenix,Duelist,2.0,77
+0,Champions Tour 2023: Lock-In Sao Paulo,Raze,Duelist,29.0,77
+1,VCT 2023: League (all regions),Iso,Duelist,0.0,397
+1,VCT 2023: League (all regions),Cypher,Sentinel,11.66,397
+1,VCT 2023: League (all regions),Clove,Controller,0.0,397
+1,VCT 2023: League (all regions),Killjoy,Sentinel,67.58,397
+1,VCT 2023: League (all regions),Chamber,Sentinel,0.35,397
+1,VCT 2023: League (all regions),Sova,Initiator,32.03,397
+1,VCT 2023: League (all regions),Astra,Controller,20.72,397
+1,VCT 2023: League (all regions),Sage,Sentinel,8.57,397
+1,VCT 2023: League (all regions),Breach,Initiator,28.61,397
+1,VCT 2023: League (all regions),KAY/O,Initiator,28.11,397
+1,VCT 2023: League (all regions),Skye,Initiator,47.1,397
+1,VCT 2023: League (all regions),Viper,Controller,47.81,397
+1,VCT 2023: League (all regions),Yoru,Duelist,1.6,397
+1,VCT 2023: League (all regions),Omen,Controller,46.93,397
+1,VCT 2023: League (all regions),Harbor,Controller,17.99,397
+1,VCT 2023: League (all regions),Brimstone,Controller,13.4,397
+1,VCT 2023: League (all regions),Reyna,Duelist,0.67,397
+1,VCT 2023: League (all regions),Jett,Duelist,65.55,397
+1,VCT 2023: League (all regions),Neon,Duelist,5.96,397
+1,VCT 2023: League (all regions),Deadlock,Sentinel,0.0,397
+1,VCT 2023: League (all regions),Fade,Initiator,12.39,397
+1,VCT 2023: League (all regions),Gekko,Initiator,4.59,397
+1,VCT 2023: League (all regions),Phoenix,Duelist,1.02,397
+1,VCT 2023: League (all regions),Raze,Duelist,36.33,397
+2,Champions Tour 2023: Masters Tokyo,Iso,Duelist,0.0,62
+2,Champions Tour 2023: Masters Tokyo,Cypher,Sentinel,18.0,62
+2,Champions Tour 2023: Masters Tokyo,Clove,Controller,0.0,62
+2,Champions Tour 2023: Masters Tokyo,Killjoy,Sentinel,59.0,62
+2,Champions Tour 2023: Masters Tokyo,Chamber,Sentinel,2.0,62
+2,Champions Tour 2023: Masters Tokyo,Sova,Initiator,21.0,62
+2,Champions Tour 2023: Masters Tokyo,Astra,Controller,17.0,62
+2,Champions Tour 2023: Masters Tokyo,Sage,Sentinel,4.0,62
+2,Champions Tour 2023: Masters Tokyo,Breach,Initiator,34.0,62
+2,Champions Tour 2023: Masters Tokyo,KAY/O,Initiator,19.0,62
+2,Champions Tour 2023: Masters Tokyo,Skye,Initiator,59.0,62
+2,Champions Tour 2023: Masters Tokyo,Viper,Controller,44.0,62
+2,Champions Tour 2023: Masters Tokyo,Yoru,Duelist,0.0,62
+2,Champions Tour 2023: Masters Tokyo,Omen,Controller,43.0,62
+2,Champions Tour 2023: Masters Tokyo,Harbor,Controller,17.0,62
+2,Champions Tour 2023: Masters Tokyo,Brimstone,Controller,26.0,62
+2,Champions Tour 2023: Masters Tokyo,Reyna,Duelist,1.0,62
+2,Champions Tour 2023: Masters Tokyo,Jett,Duelist,59.0,62
+2,Champions Tour 2023: Masters Tokyo,Neon,Duelist,10.0,62
+2,Champions Tour 2023: Masters Tokyo,Deadlock,Sentinel,0.0,62
+2,Champions Tour 2023: Masters Tokyo,Fade,Initiator,11.0,62
+2,Champions Tour 2023: Masters Tokyo,Gekko,Initiator,9.0,62
+2,Champions Tour 2023: Masters Tokyo,Phoenix,Duelist,2.0,62
+2,Champions Tour 2023: Masters Tokyo,Raze,Duelist,48.0,62
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Iso,Duelist,0.0,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Cypher,Sentinel,15.81,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Clove,Controller,0.0,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Killjoy,Sentinel,57.62,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Chamber,Sentinel,4.01,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Sova,Initiator,27.26,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Astra,Controller,27.26,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Sage,Sentinel,2.89,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Breach,Initiator,33.91,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),KAY/O,Initiator,18.54,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Skye,Initiator,53.55,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Viper,Controller,46.0,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Yoru,Duelist,2.33,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Omen,Controller,49.76,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Harbor,Controller,11.18,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Brimstone,Controller,16.01,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Reyna,Duelist,2.17,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Jett,Duelist,58.16,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Neon,Duelist,7.39,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Deadlock,Sentinel,0.0,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Fade,Initiator,10.8,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Gekko,Initiator,4.19,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Phoenix,Duelist,1.22,203
+3,VCT 2023: Champions Qualifier / VCT 2023: Last Chance Qualifier (all regions),Raze,Duelist,51.72,203
+4,Valorant Champions 2023,Iso,Duelist,0.0,84
+4,Valorant Champions 2023,Cypher,Sentinel,8.0,84
+4,Valorant Champions 2023,Clove,Controller,0.0,84
+4,Valorant Champions 2023,Killjoy,Sentinel,63.0,84
+4,Valorant Champions 2023,Chamber,Sentinel,10.0,84
+4,Valorant Champions 2023,Sova,Initiator,26.0,84
+4,Valorant Champions 2023,Astra,Controller,30.0,84
+4,Valorant Champions 2023,Sage,Sentinel,1.0,84
+4,Valorant Champions 2023,Breach,Initiator,23.0,84
+4,Valorant Champions 2023,KAY/O,Initiator,19.0,84
+4,Valorant Champions 2023,Skye,Initiator,56.0,84
+4,Valorant Champions 2023,Viper,Controller,55.0,84
+4,Valorant Champions 2023,Yoru,Duelist,4.0,84
+4,Valorant Champions 2023,Omen,Controller,42.0,84
+4,Valorant Champions 2023,Harbor,Controller,10.0,84
+4,Valorant Champions 2023,Brimstone,Controller,23.0,84
+4,Valorant Champions 2023,Reyna,Duelist,3.0,84
+4,Valorant Champions 2023,Jett,Duelist,52.0,84
+4,Valorant Champions 2023,Neon,Duelist,3.0,84
+4,Valorant Champions 2023,Deadlock,Sentinel,0.0,84
+4,Valorant Champions 2023,Fade,Initiator,13.0,84
+4,Valorant Champions 2023,Gekko,Initiator,3.0,84
+4,Valorant Champions 2023,Phoenix,Duelist,3.0,84
+4,Valorant Champions 2023,Raze,Duelist,55.0,84
+5,VCT 2024: Kickoff (all regions),Iso,Duelist,0.0,189
+5,VCT 2024: Kickoff (all regions),Cypher,Sentinel,40.19,189
+5,VCT 2024: Kickoff (all regions),Clove,Controller,0.0,189
+5,VCT 2024: Kickoff (all regions),Killjoy,Sentinel,32.79,189
+5,VCT 2024: Kickoff (all regions),Chamber,Sentinel,3.24,189
+5,VCT 2024: Kickoff (all regions),Sova,Initiator,38.43,189
+5,VCT 2024: Kickoff (all regions),Astra,Controller,9.05,189
+5,VCT 2024: Kickoff (all regions),Sage,Sentinel,1.95,189
+5,VCT 2024: Kickoff (all regions),Breach,Initiator,17.03,189
+5,VCT 2024: Kickoff (all regions),KAY/O,Initiator,25.53,189
+5,VCT 2024: Kickoff (all regions),Skye,Initiator,28.24,189
+5,VCT 2024: Kickoff (all regions),Viper,Controller,73.7,189
+5,VCT 2024: Kickoff (all regions),Yoru,Duelist,12.62,189
+5,VCT 2024: Kickoff (all regions),Omen,Controller,60.87,189
+5,VCT 2024: Kickoff (all regions),Harbor,Controller,8.49,189
+5,VCT 2024: Kickoff (all regions),Brimstone,Controller,10.32,189
+5,VCT 2024: Kickoff (all regions),Reyna,Duelist,1.24,189
+5,VCT 2024: Kickoff (all regions),Jett,Duelist,36.84,189
+5,VCT 2024: Kickoff (all regions),Neon,Duelist,3.16,189
+5,VCT 2024: Kickoff (all regions),Deadlock,Sentinel,0.54,189
+5,VCT 2024: Kickoff (all regions),Fade,Initiator,20.28,189
+5,VCT 2024: Kickoff (all regions),Gekko,Initiator,13.78,189
+5,VCT 2024: Kickoff (all regions),Phoenix,Duelist,4.35,189
+5,VCT 2024: Kickoff (all regions),Raze,Duelist,56.89,189
+6,Champions Tour 2024: Masters Madrid,Iso,Duelist,0.0,45
+6,Champions Tour 2024: Masters Madrid,Cypher,Sentinel,26.0,45
+6,Champions Tour 2024: Masters Madrid,Clove,Controller,0.0,45
+6,Champions Tour 2024: Masters Madrid,Killjoy,Sentinel,29.0,45
+6,Champions Tour 2024: Masters Madrid,Chamber,Sentinel,2.0,45
+6,Champions Tour 2024: Masters Madrid,Sova,Initiator,33.0,45
+6,Champions Tour 2024: Masters Madrid,Astra,Controller,9.0,45
+6,Champions Tour 2024: Masters Madrid,Sage,Sentinel,6.0,45
+6,Champions Tour 2024: Masters Madrid,Breach,Initiator,12.0,45
+6,Champions Tour 2024: Masters Madrid,KAY/O,Initiator,36.0,45
+6,Champions Tour 2024: Masters Madrid,Skye,Initiator,27.0,45
+6,Champions Tour 2024: Masters Madrid,Viper,Controller,78.0,45
+6,Champions Tour 2024: Masters Madrid,Yoru,Duelist,11.0,45
+6,Champions Tour 2024: Masters Madrid,Omen,Controller,68.0,45
+6,Champions Tour 2024: Masters Madrid,Harbor,Controller,7.0,45
+6,Champions Tour 2024: Masters Madrid,Brimstone,Controller,7.0,45
+6,Champions Tour 2024: Masters Madrid,Reyna,Duelist,3.0,45
+6,Champions Tour 2024: Masters Madrid,Jett,Duelist,43.0,45
+6,Champions Tour 2024: Masters Madrid,Neon,Duelist,4.0,45
+6,Champions Tour 2024: Masters Madrid,Deadlock,Sentinel,0.0,45
+6,Champions Tour 2024: Masters Madrid,Fade,Initiator,17.0,45
+6,Champions Tour 2024: Masters Madrid,Gekko,Initiator,24.0,45
+6,Champions Tour 2024: Masters Madrid,Phoenix,Duelist,7.0,45
+6,Champions Tour 2024: Masters Madrid,Raze,Duelist,52.0,45
+7,VCT 2024: Stage 1 (all regions),Iso,Duelist,0.0,382
+7,VCT 2024: Stage 1 (all regions),Cypher,Sentinel,37.91,382
+7,VCT 2024: Stage 1 (all regions),Clove,Controller,0.49,382
+7,VCT 2024: Stage 1 (all regions),Killjoy,Sentinel,36.53,382
+7,VCT 2024: Stage 1 (all regions),Chamber,Sentinel,3.6,382
+7,VCT 2024: Stage 1 (all regions),Sova,Initiator,38.41,382
+7,VCT 2024: Stage 1 (all regions),Astra,Controller,3.96,382
+7,VCT 2024: Stage 1 (all regions),Sage,Sentinel,6.3,382
+7,VCT 2024: Stage 1 (all regions),Breach,Initiator,12.73,382
+7,VCT 2024: Stage 1 (all regions),KAY/O,Initiator,31.57,382
+7,VCT 2024: Stage 1 (all regions),Skye,Initiator,22.01,382
+7,VCT 2024: Stage 1 (all regions),Viper,Controller,72.65,382
+7,VCT 2024: Stage 1 (all regions),Yoru,Duelist,11.21,382
+7,VCT 2024: Stage 1 (all regions),Omen,Controller,59.15,382
+7,VCT 2024: Stage 1 (all regions),Harbor,Controller,8.49,382
+7,VCT 2024: Stage 1 (all regions),Brimstone,Controller,12.93,382
+7,VCT 2024: Stage 1 (all regions),Reyna,Duelist,1.98,382
+7,VCT 2024: Stage 1 (all regions),Jett,Duelist,33.84,382
+7,VCT 2024: Stage 1 (all regions),Neon,Duelist,2.79,382
+7,VCT 2024: Stage 1 (all regions),Deadlock,Sentinel,0.74,382
+7,VCT 2024: Stage 1 (all regions),Fade,Initiator,18.03,382
+7,VCT 2024: Stage 1 (all regions),Gekko,Initiator,29.43,382
+7,VCT 2024: Stage 1 (all regions),Phoenix,Duelist,1.26,382
+7,VCT 2024: Stage 1 (all regions),Raze,Duelist,55.79,382
+8,Champions Tour 2024: Masters Shanghai,Iso,Duelist,0.0,64
+8,Champions Tour 2024: Masters Shanghai,Cypher,Sentinel,32.0,64
+8,Champions Tour 2024: Masters Shanghai,Clove,Controller,2.0,64
+8,Champions Tour 2024: Masters Shanghai,Killjoy,Sentinel,38.0,64
+8,Champions Tour 2024: Masters Shanghai,Chamber,Sentinel,2.0,64
+8,Champions Tour 2024: Masters Shanghai,Sova,Initiator,38.0,64
+8,Champions Tour 2024: Masters Shanghai,Astra,Controller,6.0,64
+8,Champions Tour 2024: Masters Shanghai,Sage,Sentinel,5.0,64
+8,Champions Tour 2024: Masters Shanghai,Breach,Initiator,14.0,64
+8,Champions Tour 2024: Masters Shanghai,KAY/O,Initiator,32.0,64
+8,Champions Tour 2024: Masters Shanghai,Skye,Initiator,18.0,64
+8,Champions Tour 2024: Masters Shanghai,Viper,Controller,66.0,64
+8,Champions Tour 2024: Masters Shanghai,Yoru,Duelist,9.0,64
+8,Champions Tour 2024: Masters Shanghai,Omen,Controller,64.0,64
+8,Champions Tour 2024: Masters Shanghai,Harbor,Controller,12.0,64
+8,Champions Tour 2024: Masters Shanghai,Brimstone,Controller,11.0,64
+8,Champions Tour 2024: Masters Shanghai,Reyna,Duelist,2.0,64
+8,Champions Tour 2024: Masters Shanghai,Jett,Duelist,35.0,64
+8,Champions Tour 2024: Masters Shanghai,Neon,Duelist,0.0,64
+8,Champions Tour 2024: Masters Shanghai,Deadlock,Sentinel,0.0,64
+8,Champions Tour 2024: Masters Shanghai,Fade,Initiator,27.0,64
+8,Champions Tour 2024: Masters Shanghai,Gekko,Initiator,31.0,64
+8,Champions Tour 2024: Masters Shanghai,Phoenix,Duelist,0.0,64
+8,Champions Tour 2024: Masters Shanghai,Raze,Duelist,57.0,64
+9,VCT 2024: Stage 2 (all regions),Iso,Duelist,3.76,336
+9,VCT 2024: Stage 2 (all regions),Cypher,Sentinel,45.67,336
+9,VCT 2024: Stage 2 (all regions),Clove,Controller,3.55,336
+9,VCT 2024: Stage 2 (all regions),Killjoy,Sentinel,36.29,336
+9,VCT 2024: Stage 2 (all regions),Chamber,Sentinel,3.55,336
+9,VCT 2024: Stage 2 (all regions),Sova,Initiator,46.51,336
+9,VCT 2024: Stage 2 (all regions),Astra,Controller,4.24,336
+9,VCT 2024: Stage 2 (all regions),Sage,Sentinel,5.29,336
+9,VCT 2024: Stage 2 (all regions),Breach,Initiator,30.0,336
+9,VCT 2024: Stage 2 (all regions),KAY/O,Initiator,32.41,336
+9,VCT 2024: Stage 2 (all regions),Skye,Initiator,11.28,336
+9,VCT 2024: Stage 2 (all regions),Viper,Controller,37.2,336
+9,VCT 2024: Stage 2 (all regions),Yoru,Duelist,6.44,336
+9,VCT 2024: Stage 2 (all regions),Omen,Controller,73.28,336
+9,VCT 2024: Stage 2 (all regions),Harbor,Controller,4.25,336
+9,VCT 2024: Stage 2 (all regions),Brimstone,Controller,8.19,336
+9,VCT 2024: Stage 2 (all regions),Reyna,Duelist,1.26,336
+9,VCT 2024: Stage 2 (all regions),Jett,Duelist,40.62,336
+9,VCT 2024: Stage 2 (all regions),Neon,Duelist,17.96,336
+9,VCT 2024: Stage 2 (all regions),Deadlock,Sentinel,3.24,336
+9,VCT 2024: Stage 2 (all regions),Fade,Initiator,21.62,336
+9,VCT 2024: Stage 2 (all regions),Gekko,Initiator,25.41,336
+9,VCT 2024: Stage 2 (all regions),Phoenix,Duelist,0.77,336
+9,VCT 2024: Stage 2 (all regions),Raze,Duelist,36.22,336
+10,Valorant Champions 2024,Iso,Duelist,1.0,86
+10,Valorant Champions 2024,Cypher,Sentinel,42.0,86
+10,Valorant Champions 2024,Clove,Controller,4.0,86
+10,Valorant Champions 2024,Killjoy,Sentinel,33.0,86
+10,Valorant Champions 2024,Chamber,Sentinel,3.0,86
+10,Valorant Champions 2024,Sova,Initiator,52.0,86
+10,Valorant Champions 2024,Astra,Controller,12.0,86
+10,Valorant Champions 2024,Sage,Sentinel,4.0,86
+10,Valorant Champions 2024,Breach,Initiator,24.0,86
+10,Valorant Champions 2024,KAY/O,Initiator,20.0,86
+10,Valorant Champions 2024,Skye,Initiator,8.0,86
+10,Valorant Champions 2024,Viper,Controller,50.0,86
+10,Valorant Champions 2024,Yoru,Duelist,8.0,86
+10,Valorant Champions 2024,Omen,Controller,62.0,86
+10,Valorant Champions 2024,Harbor,Controller,7.0,86
+10,Valorant Champions 2024,Brimstone,Controller,13.0,86
+10,Valorant Champions 2024,Reyna,Duelist,0.0,86
+10,Valorant Champions 2024,Jett,Duelist,29.0,86
+10,Valorant Champions 2024,Neon,Duelist,22.0,86
+10,Valorant Champions 2024,Deadlock,Sentinel,5.0,86
+10,Valorant Champions 2024,Fade,Initiator,34.0,86
+10,Valorant Champions 2024,Gekko,Initiator,27.0,86
+10,Valorant Champions 2024,Phoenix,Duelist,1.0,86
+10,Valorant Champions 2024,Raze,Duelist,41.0,86
+11,VCT 2025: Kickoff (all regions),Iso,Duelist,2.61,235
+11,VCT 2025: Kickoff (all regions),Cypher,Sentinel,33.44,235
+11,VCT 2025: Kickoff (all regions),Clove,Controller,3.19,235
+11,VCT 2025: Kickoff (all regions),Killjoy,Sentinel,18.73,235
+11,VCT 2025: Kickoff (all regions),Chamber,Sentinel,5.05,235
+11,VCT 2025: Kickoff (all regions),Sova,Initiator,40.71,235
+11,VCT 2025: Kickoff (all regions),Astra,Controller,39.79,235
+11,VCT 2025: Kickoff (all regions),Sage,Sentinel,2.0,235
+11,VCT 2025: Kickoff (all regions),Breach,Initiator,34.11,235
+11,VCT 2025: Kickoff (all regions),KAY/O,Initiator,23.14,235
+11,VCT 2025: Kickoff (all regions),Skye,Initiator,11.31,235
+11,VCT 2025: Kickoff (all regions),Viper,Controller,22.59,235
+11,VCT 2025: Kickoff (all regions),Yoru,Duelist,19.41,235
+11,VCT 2025: Kickoff (all regions),Omen,Controller,44.37,235
+11,VCT 2025: Kickoff (all regions),Harbor,Controller,1.74,235
+11,VCT 2025: Kickoff (all regions),Brimstone,Controller,23.06,235
+11,VCT 2025: Kickoff (all regions),Reyna,Duelist,0.51,235
+11,VCT 2025: Kickoff (all regions),Jett,Duelist,29.58,235
+11,VCT 2025: Kickoff (all regions),Tejo,Initiator,22.85,235
+11,VCT 2025: Kickoff (all regions),Neon,Duelist,14.29,235
+11,VCT 2025: Kickoff (all regions),Deadlock,Sentinel,7.35,235
+11,VCT 2025: Kickoff (all regions),Fade,Initiator,26.2,235
+11,VCT 2025: Kickoff (all regions),Waylay,Duelist,0.0,235
+11,VCT 2025: Kickoff (all regions),Gekko,Initiator,7.09,235
+11,VCT 2025: Kickoff (all regions),Phoenix,Duelist,2.25,235
+11,VCT 2025: Kickoff (all regions),Vyse,Sentinel,23.69,235
+11,VCT 2025: Kickoff (all regions),Raze,Duelist,42.97,235
+12,Valorant Masters Bangkok 2025,Iso,Duelist,8.0,42
+12,Valorant Masters Bangkok 2025,Cypher,Sentinel,26.0,42
+12,Valorant Masters Bangkok 2025,Clove,Controller,1.0,42
+12,Valorant Masters Bangkok 2025,Killjoy,Sentinel,4.0,42
+12,Valorant Masters Bangkok 2025,Chamber,Sentinel,6.0,42
+12,Valorant Masters Bangkok 2025,Sova,Initiator,25.0,42
+12,Valorant Masters Bangkok 2025,Astra,Controller,23.0,42
+12,Valorant Masters Bangkok 2025,Sage,Sentinel,0.0,42
+12,Valorant Masters Bangkok 2025,Breach,Initiator,45.0,42
+12,Valorant Masters Bangkok 2025,KAY/O,Initiator,11.0,42
+12,Valorant Masters Bangkok 2025,Skye,Initiator,7.0,42
+12,Valorant Masters Bangkok 2025,Viper,Controller,36.0,42
+12,Valorant Masters Bangkok 2025,Yoru,Duelist,46.0,42
+12,Valorant Masters Bangkok 2025,Omen,Controller,54.0,42
+12,Valorant Masters Bangkok 2025,Harbor,Controller,0.0,42
+12,Valorant Masters Bangkok 2025,Brimstone,Controller,26.0,42
+12,Valorant Masters Bangkok 2025,Reyna,Duelist,1.0,42
+12,Valorant Masters Bangkok 2025,Jett,Duelist,17.0,42
+12,Valorant Masters Bangkok 2025,Tejo,Initiator,56.0,42
+12,Valorant Masters Bangkok 2025,Neon,Duelist,8.0,42
+12,Valorant Masters Bangkok 2025,Deadlock,Sentinel,0.0,42
+12,Valorant Masters Bangkok 2025,Fade,Initiator,26.0,42
+12,Valorant Masters Bangkok 2025,Waylay,Duelist,0.0,42
+12,Valorant Masters Bangkok 2025,Gekko,Initiator,1.0,42
+12,Valorant Masters Bangkok 2025,Phoenix,Duelist,0.0,42
+12,Valorant Masters Bangkok 2025,Vyse,Sentinel,33.0,42
+12,Valorant Masters Bangkok 2025,Raze,Duelist,39.0,42
+13,VCT 2025: Stage 1 (all regions),Iso,Duelist,6.52,419
+13,VCT 2025: Stage 1 (all regions),Cypher,Sentinel,32.2,419
+13,VCT 2025: Stage 1 (all regions),Clove,Controller,0.99,419
+13,VCT 2025: Stage 1 (all regions),Killjoy,Sentinel,19.53,419
+13,VCT 2025: Stage 1 (all regions),Chamber,Sentinel,3.51,419
+13,VCT 2025: Stage 1 (all regions),Sova,Initiator,24.48,419
+13,VCT 2025: Stage 1 (all regions),Astra,Controller,18.97,419
+13,VCT 2025: Stage 1 (all regions),Sage,Sentinel,0.99,419
+13,VCT 2025: Stage 1 (all regions),Breach,Initiator,40.97,419
+13,VCT 2025: Stage 1 (all regions),KAY/O,Initiator,14.0,419
+13,VCT 2025: Stage 1 (all regions),Skye,Initiator,0.5,419
+13,VCT 2025: Stage 1 (all regions),Viper,Controller,37.0,419
+13,VCT 2025: Stage 1 (all regions),Yoru,Duelist,40.49,419
+13,VCT 2025: Stage 1 (all regions),Omen,Controller,55.51,419
+13,VCT 2025: Stage 1 (all regions),Harbor,Controller,3.49,419
+13,VCT 2025: Stage 1 (all regions),Brimstone,Controller,12.52,419
+13,VCT 2025: Stage 1 (all regions),Reyna,Duelist,1.01,419
+13,VCT 2025: Stage 1 (all regions),Jett,Duelist,21.49,419
+13,VCT 2025: Stage 1 (all regions),Tejo,Initiator,63.04,419
+13,VCT 2025: Stage 1 (all regions),Neon,Duelist,21.8,419
+13,VCT 2025: Stage 1 (all regions),Deadlock,Sentinel,7.51,419
+13,VCT 2025: Stage 1 (all regions),Fade,Initiator,18.73,419
+13,VCT 2025: Stage 1 (all regions),Waylay,Duelist,6.25,419
+13,VCT 2025: Stage 1 (all regions),Gekko,Initiator,4.97,419
+13,VCT 2025: Stage 1 (all regions),Phoenix,Duelist,0.51,419
+13,VCT 2025: Stage 1 (all regions),Vyse,Sentinel,27.54,419
+13,VCT 2025: Stage 1 (all regions),Raze,Duelist,15.24,419
+14,Valorant Masters Toronto 2025,Iso,Duelist,3.0,59
+14,Valorant Masters Toronto 2025,Cypher,Sentinel,31.0,59
+14,Valorant Masters Toronto 2025,Clove,Controller,1.0,59
+14,Valorant Masters Toronto 2025,Killjoy,Sentinel,31.0,59
+14,Valorant Masters Toronto 2025,Chamber,Sentinel,4.0,59
+14,Valorant Masters Toronto 2025,Sova,Initiator,53.0,59
+14,Valorant Masters Toronto 2025,Astra,Controller,8.0,59
+14,Valorant Masters Toronto 2025,Sage,Sentinel,7.0,59
+14,Valorant Masters Toronto 2025,Breach,Initiator,14.0,59
+14,Valorant Masters Toronto 2025,KAY/O,Initiator,9.0,59
+14,Valorant Masters Toronto 2025,Skye,Initiator,3.0,59
+14,Valorant Masters Toronto 2025,Viper,Controller,64.0,59
+14,Valorant Masters Toronto 2025,Yoru,Duelist,31.0,59
+14,Valorant Masters Toronto 2025,Omen,Controller,82.0,59
+14,Valorant Masters Toronto 2025,Harbor,Controller,4.0,59
+14,Valorant Masters Toronto 2025,Brimstone,Controller,0.0,59
+14,Valorant Masters Toronto 2025,Reyna,Duelist,0.0,59
+14,Valorant Masters Toronto 2025,Jett,Duelist,19.0,59
+14,Valorant Masters Toronto 2025,Tejo,Initiator,4.0,59
+14,Valorant Masters Toronto 2025,Neon,Duelist,25.0,59
+14,Valorant Masters Toronto 2025,Deadlock,Sentinel,8.0,59
+14,Valorant Masters Toronto 2025,Fade,Initiator,40.0,59
+14,Valorant Masters Toronto 2025,Waylay,Duelist,2.0,59
+14,Valorant Masters Toronto 2025,Gekko,Initiator,8.0,59
+14,Valorant Masters Toronto 2025,Phoenix,Duelist,1.0,59
+14,Valorant Masters Toronto 2025,Vyse,Sentinel,16.0,59
+14,Valorant Masters Toronto 2025,Raze,Duelist,34.0,59
+15,VCT 2025: Stage 2 (all regions),Iso,Duelist,4.26,427
+15,VCT 2025: Stage 2 (all regions),Cypher,Sentinel,31.4,427
+15,VCT 2025: Stage 2 (all regions),Clove,Controller,1.27,427
+15,VCT 2025: Stage 2 (all regions),Killjoy,Sentinel,20.24,427
+15,VCT 2025: Stage 2 (all regions),Chamber,Sentinel,5.97,427
+15,VCT 2025: Stage 2 (all regions),Sova,Initiator,52.03,427
+15,VCT 2025: Stage 2 (all regions),Astra,Controller,4.74,427
+15,VCT 2025: Stage 2 (all regions),Sage,Sentinel,6.4,427
+15,VCT 2025: Stage 2 (all regions),Breach,Initiator,9.31,427
+15,VCT 2025: Stage 2 (all regions),KAY/O,Initiator,13.64,427
+15,VCT 2025: Stage 2 (all regions),Skye,Initiator,3.73,427
+15,VCT 2025: Stage 2 (all regions),Viper,Controller,52.63,427
+15,VCT 2025: Stage 2 (all regions),Yoru,Duelist,34.99,427
+15,VCT 2025: Stage 2 (all regions),Omen,Controller,79.59,427
+15,VCT 2025: Stage 2 (all regions),Harbor,Controller,1.99,427
+15,VCT 2025: Stage 2 (all regions),Brimstone,Controller,9.21,427
+15,VCT 2025: Stage 2 (all regions),Reyna,Duelist,0.26,427
+15,VCT 2025: Stage 2 (all regions),Jett,Duelist,18.07,427
+15,VCT 2025: Stage 2 (all regions),Tejo,Initiator,2.5,427
+15,VCT 2025: Stage 2 (all regions),Neon,Duelist,32.44,427
+15,VCT 2025: Stage 2 (all regions),Deadlock,Sentinel,12.47,427
+15,VCT 2025: Stage 2 (all regions),Fade,Initiator,40.69,427
+15,VCT 2025: Stage 2 (all regions),Waylay,Duelist,4.93,427
+15,VCT 2025: Stage 2 (all regions),Gekko,Initiator,6.83,427
+15,VCT 2025: Stage 2 (all regions),Phoenix,Duelist,1.03,427
+15,VCT 2025: Stage 2 (all regions),Vyse,Sentinel,20.93,427
+15,VCT 2025: Stage 2 (all regions),Raze,Duelist,28.24,427
+16,Valorant Champions 2025,Iso,Duelist,0.0,88
+16,Valorant Champions 2025,Cypher,Sentinel,30.0,88
+16,Valorant Champions 2025,Clove,Controller,0.0,88
+16,Valorant Champions 2025,Killjoy,Sentinel,9.0,88
+16,Valorant Champions 2025,Chamber,Sentinel,3.0,88
+16,Valorant Champions 2025,Sova,Initiator,53.0,88
+16,Valorant Champions 2025,Astra,Controller,12.0,88
+16,Valorant Champions 2025,Sage,Sentinel,7.0,88
+16,Valorant Champions 2025,Breach,Initiator,10.0,88
+16,Valorant Champions 2025,KAY/O,Initiator,14.0,88
+16,Valorant Champions 2025,Skye,Initiator,2.0,88
+16,Valorant Champions 2025,Viper,Controller,43.0,88
+16,Valorant Champions 2025,Yoru,Duelist,53.0,88
+16,Valorant Champions 2025,Omen,Controller,80.0,88
+16,Valorant Champions 2025,Harbor,Controller,3.0,88
+16,Valorant Champions 2025,Brimstone,Controller,10.0,88
+16,Valorant Champions 2025,Reyna,Duelist,0.0,88
+16,Valorant Champions 2025,Jett,Duelist,11.0,88
+16,Valorant Champions 2025,Tejo,Initiator,9.0,88
+16,Valorant Champions 2025,Neon,Duelist,22.0,88
+16,Valorant Champions 2025,Deadlock,Sentinel,6.0,88
+16,Valorant Champions 2025,Fade,Initiator,43.0,88
+16,Valorant Champions 2025,Waylay,Duelist,26.0,88
+16,Valorant Champions 2025,Gekko,Initiator,3.0,88
+16,Valorant Champions 2025,Phoenix,Duelist,0.0,88
+16,Valorant Champions 2025,Vyse,Sentinel,30.0,88
+16,Valorant Champions 2025,Raze,Duelist,22.0,88
+17,VCT 2026: Kickoff (all regions),Iso,Duelist,0.98,320
+17,VCT 2026: Kickoff (all regions),Cypher,Sentinel,11.36,320
+17,VCT 2026: Kickoff (all regions),Clove,Controller,0.0,320
+17,VCT 2026: Kickoff (all regions),Killjoy,Sentinel,14.59,320
+17,VCT 2026: Kickoff (all regions),Chamber,Sentinel,11.1,320
+17,VCT 2026: Kickoff (all regions),Sova,Initiator,46.99,320
+17,VCT 2026: Kickoff (all regions),Astra,Controller,44.43,320
+17,VCT 2026: Kickoff (all regions),Sage,Sentinel,3.21,320
+17,VCT 2026: Kickoff (all regions),Breach,Initiator,6.05,320
+17,VCT 2026: Kickoff (all regions),KAY/O,Initiator,10.61,320
+17,VCT 2026: Kickoff (all regions),Skye,Initiator,11.64,320
+17,VCT 2026: Kickoff (all regions),Viper,Controller,57.1,320
+17,VCT 2026: Kickoff (all regions),Miks,Controller,0.0,320
+17,VCT 2026: Kickoff (all regions),Yoru,Duelist,59.41,320
+17,VCT 2026: Kickoff (all regions),Omen,Controller,46.42,320
+17,VCT 2026: Kickoff (all regions),Veto,Sentinel,7.75,320
+17,VCT 2026: Kickoff (all regions),Harbor,Controller,0.75,320
+17,VCT 2026: Kickoff (all regions),Brimstone,Controller,15.95,320
+17,VCT 2026: Kickoff (all regions),Reyna,Duelist,0.52,320
+17,VCT 2026: Kickoff (all regions),Jett,Duelist,12.92,320
+17,VCT 2026: Kickoff (all regions),Tejo,Initiator,13.2,320
+17,VCT 2026: Kickoff (all regions),Neon,Duelist,26.73,320
+17,VCT 2026: Kickoff (all regions),Deadlock,Sentinel,0.0,320
+17,VCT 2026: Kickoff (all regions),Fade,Initiator,35.58,320
+17,VCT 2026: Kickoff (all regions),Waylay,Duelist,39.12,320
+17,VCT 2026: Kickoff (all regions),Gekko,Initiator,1.54,320
+17,VCT 2026: Kickoff (all regions),Phoenix,Duelist,3.78,320
+17,VCT 2026: Kickoff (all regions),Vyse,Sentinel,1.75,320
+17,VCT 2026: Kickoff (all regions),Raze,Duelist,16.03,320
+18,Valorant Masters Santiago 2026,Iso,Duelist,3.0,59
+18,Valorant Masters Santiago 2026,Cypher,Sentinel,13.0,59
+18,Valorant Masters Santiago 2026,Clove,Controller,0.0,59
+18,Valorant Masters Santiago 2026,Killjoy,Sentinel,13.0,59
+18,Valorant Masters Santiago 2026,Chamber,Sentinel,9.0,59
+18,Valorant Masters Santiago 2026,Sova,Initiator,50.0,59
+18,Valorant Masters Santiago 2026,Astra,Controller,38.0,59
+18,Valorant Masters Santiago 2026,Sage,Sentinel,0.0,59
+18,Valorant Masters Santiago 2026,Breach,Initiator,0.0,59
+18,Valorant Masters Santiago 2026,KAY/O,Initiator,1.0,59
+18,Valorant Masters Santiago 2026,Skye,Initiator,13.0,59
+18,Valorant Masters Santiago 2026,Viper,Controller,62.0,59
+18,Valorant Masters Santiago 2026,Miks,Controller,0.0,59
+18,Valorant Masters Santiago 2026,Yoru,Duelist,62.0,59
+18,Valorant Masters Santiago 2026,Omen,Controller,56.0,59
+18,Valorant Masters Santiago 2026,Veto,Sentinel,1.0,59
+18,Valorant Masters Santiago 2026,Harbor,Controller,6.0,59
+18,Valorant Masters Santiago 2026,Brimstone,Controller,7.0,59
+18,Valorant Masters Santiago 2026,Reyna,Duelist,0.0,59
+18,Valorant Masters Santiago 2026,Jett,Duelist,8.0,59
+18,Valorant Masters Santiago 2026,Tejo,Initiator,8.0,59
+18,Valorant Masters Santiago 2026,Neon,Duelist,45.0,59
+18,Valorant Masters Santiago 2026,Deadlock,Sentinel,0.0,59
+18,Valorant Masters Santiago 2026,Fade,Initiator,38.0,59
+18,Valorant Masters Santiago 2026,Waylay,Duelist,36.0,59
+18,Valorant Masters Santiago 2026,Gekko,Initiator,1.0,59
+18,Valorant Masters Santiago 2026,Phoenix,Duelist,8.0,59
+18,Valorant Masters Santiago 2026,Vyse,Sentinel,11.0,59
+18,Valorant Masters Santiago 2026,Raze,Duelist,14.0,59
+19,VCT 2026: Stage 1 (all regions),Iso,Duelist,0.95,442
+19,VCT 2026: Stage 1 (all regions),Cypher,Sentinel,25.89,442
+19,VCT 2026: Stage 1 (all regions),Clove,Controller,0.0,442
+19,VCT 2026: Stage 1 (all regions),Killjoy,Sentinel,10.81,442
+19,VCT 2026: Stage 1 (all regions),Chamber,Sentinel,12.48,442
+19,VCT 2026: Stage 1 (all regions),Sova,Initiator,31.1,442
+19,VCT 2026: Stage 1 (all regions),Astra,Controller,24.28,442
+19,VCT 2026: Stage 1 (all regions),Sage,Sentinel,3.19,442
+19,VCT 2026: Stage 1 (all regions),Breach,Initiator,4.17,442
+19,VCT 2026: Stage 1 (all regions),KAY/O,Initiator,8.21,442
+19,VCT 2026: Stage 1 (all regions),Skye,Initiator,27.63,442
+19,VCT 2026: Stage 1 (all regions),Viper,Controller,44.42,442
+19,VCT 2026: Stage 1 (all regions),Miks,Controller,0.28,442
+19,VCT 2026: Stage 1 (all regions),Yoru,Duelist,1.19,442
+19,VCT 2026: Stage 1 (all regions),Omen,Controller,52.45,442
+19,VCT 2026: Stage 1 (all regions),Veto,Sentinel,2.73,442
+19,VCT 2026: Stage 1 (all regions),Harbor,Controller,8.49,442
+19,VCT 2026: Stage 1 (all regions),Brimstone,Controller,17.48,442
+19,VCT 2026: Stage 1 (all regions),Reyna,Duelist,0.0,442
+19,VCT 2026: Stage 1 (all regions),Jett,Duelist,15.59,442
+19,VCT 2026: Stage 1 (all regions),Tejo,Initiator,7.07,442
+19,VCT 2026: Stage 1 (all regions),Neon,Duelist,79.31,442
+19,VCT 2026: Stage 1 (all regions),Deadlock,Sentinel,1.96,442
+19,VCT 2026: Stage 1 (all regions),Fade,Initiator,36.45,442
+19,VCT 2026: Stage 1 (all regions),Waylay,Duelist,23.72,442
+19,VCT 2026: Stage 1 (all regions),Gekko,Initiator,0.52,442
+19,VCT 2026: Stage 1 (all regions),Phoenix,Duelist,20.14,442
+19,VCT 2026: Stage 1 (all regions),Vyse,Sentinel,16.79,442
+19,VCT 2026: Stage 1 (all regions),Raze,Duelist,22.02,442

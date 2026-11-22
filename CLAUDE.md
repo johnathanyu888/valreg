@@ -24,7 +24,7 @@ I am a first-year Computer Science student at the University of Waterloo (term 1
 
 - Windows on both my desktop PC and my laptop. Use PowerShell commands. Python 3.12+.
 - Project folder: `C:\dev\valreg` (deliberately outside OneDrive). GitHub repo: `valreg`.
-- Libraries so far: pandas, requests, scikit-learn, streamlit (pinned in `requirements.txt`).
+- Libraries so far: pandas, requests, scikit-learn, streamlit, altair (charts; pinned in `requirements.txt`).
 - Virtual environment: `.venv` (activate with `.venv\Scripts\Activate.ps1`). It is never committed.
 - Sync between my two computers is through GitHub only: `git pull` at the start of a session, commit and push at the end.
 - Secrets (API keys) live in a `.env` file that is git-ignored, and later in GitHub Actions secrets if I automate. Never commit keys.
@@ -34,41 +34,47 @@ I am a first-year Computer Science student at the University of Waterloo (term 1
 
 | Source | Use | Status and caveats |
 |---|---|---|
-| valorant-api.com | Agents, roles, abilities, maps (free, keyless, community-run) | Use agent UUID as the master ID everywhere. The maps endpoint includes non-competitive maps, so filter to the competitive pool. |
-| Kaggle dataset "Valorant Champion Tour 2021-2026 Data" (by Ryan Luong, scraped from vlr.gg) | Pro pick rates by agent, map, tournament, stage, year | Backbone of the forecast. Columns seen: source_file, tournament, stage, match_type, map, agent, pick_rate, year. Inspect before trusting. |
-| YouTube Data API v3 | Ranked-audience interest: views/day for videos about each agent | Free but quota-limited, and searches are the expensive calls. My understanding is about 100 searches per day, **to be verified in Google's docs**. Spread collection across days. |
-| Google Trends via `pytrends` (optional) | Search interest over time | Unofficial library. Verify it works and its limits first. |
-| Reddit (optional, light use only) | Mention counts | I do not want to rely on it because of rate limits. Verify current API terms first. |
-| Patch history | Dates of buffs and nerfs per agent | No ready dataset. I will probably build it by hand or semi-manually from Riot's public patch notes. |
+| valorant-api.com | Agents, roles, abilities, maps (free, keyless, community-run) | In use (`collectors/valorant_api.py`). Agent UUID is the master ID. Maps include non-competitive ones; cleaning keeps maps with bomb sites (13). **25 of 30 agents have a placeholder release date (1970-01-01)**, stored as NULL. |
+| Kaggle "Valorant Champion Tour 2021-2026 Data" (Ryan Luong, from vlr.gg, MIT) | Pro pick rates | In use (`collectors/pro_data.py`; ~160 MB, git-ignored). Real columns: Tournament, Stage, Match Type, Map, Agent, Pick Rate (year = folder). Mixes summary rows (All Stages/Match Types/Maps) with detail rows. **No dates; last updated 2026-06-26** (no Hush, no Summit). Kaggle 404s the default python-requests User-Agent. |
+| Event phases and dates | Ordering events in time | Hand-made `data/raw/manual/event_dates.csv`: phase for all 49 top-tier 2023-2026 events; dates for 9 (from Wikipedia). vlr.gg tournament IDs follow page-creation order, not play order, so don't sort by them. |
+| YouTube Data API v3 | Ranked-audience interest | Collector written (`collectors/youtube.py`), **not run: needs my API key in `.env`**. Verified: 100 search.list calls/day, resets midnight PT; one run uses 43 searches. No cleaning script yet. |
+| Patch history | Buffs/nerfs per agent | Not started. By hand from patch notes (Riot's ToS bans scrapers on its sites). Most promising missing feature. |
 
 **Ruled out (do not propose again without discussing):**
 - Riot's official Valorant match API: personal keys are not offered for Valorant, and production keys require a working public app, so it is closed to this project.
 - tracker.gg: no public developer API and its terms restrict automated use. I may log a few ranked pick rates by hand weekly for my own time series.
 - X/Twitter API: no useful free tier; reads are pay-per-use.
+- vlr.gg scraping: terms (Sept 2025) ban data mining and systematic retrieval without written permission (community@vlr.gg).
+- Riot sites (playvalorant.com patch notes) by script: Riot ToS bans bots and scrapers. Reading by hand is fine.
+- Liquipedia pages by script: its API terms forbid automated access to HTML pages; robots.txt blocks AI agents. Reading by hand is fine.
+- Google Trends: `pytrends` was archived in April 2025; the official Trends API is an application-only alpha.
+- Reddit: terms pages couldn't be read (403) on 2026-11-22; not verified, so not used. Recheck by hand before proposing.
+- Twitch API: allowed with a registered app, but only gives per-game viewers, not per-agent data.
 
 ## Pipeline (how data flows)
 
 1. **Collect** with plain Python scripts in `collectors/` (HTTP requests or file downloads). No AI is involved in scraping.
 2. **Keep raw data untouched** in `data/raw/`.
 3. **Clean** in `cleaning/`: inspect (`head`, `info`, `isna`), fix types (for example "54.69%" becomes 54.69), normalize names ("Kay/O", "KAY/O" and "Kayo" become one name), remove duplicates, validate (pick rates between 0 and 100), join to agent UUIDs. Cleaned results go into SQLite.
-4. **Store** in SQLite (`data/valreg.db` or similar; the Day 1 script currently uses `data/valorant.db`, so decide on one name and keep it consistent). Planned tables: `agents`, `maps`, `events`, `patches`, `pro_pick_rates`, `youtube_videos`, `youtube_snapshots`. Data volume is tiny, so size is not a concern. API quota is the real limit.
-5. **Analyze** in `analysis/` with pandas and scikit-learn.
-6. **Present** in `app/` (Streamlit), which only reads precomputed results from the database or files. No live scraping on the website.
-7. **Deploy** free on Streamlit Community Cloud, reading from the repo. A scheduled GitHub Action for weekly YouTube snapshots is an optional later extra.
+4. **Store** in SQLite `data/valreg.db` (git-ignored, rebuilt from raw every run). Tables: `agents`, `maps`, `events` (with `phase`, dates), `pro_pick_rates` (with `maps_played`). Planned: `patches`, `youtube_videos`, `youtube_snapshots`.
+5. **Analyze** in `analysis/` with pandas and scikit-learn; results go to `data/results/*.csv` (committed).
+6. **Present** in `app/streamlit_app.py`, which only reads `data/results/`. No live scraping on the website.
+7. **Deploy** free on Streamlit Community Cloud, reading from the repo (not done yet).
 
-Planned layout:
+`python run_pipeline.py` rebuilds everything from `data/raw/`: the three cleaning loaders, then `analysis/forecast.py` and `analysis/clusters.py`.
+
+Layout:
 
 ```
 valreg/
-  CLAUDE.md
+  CLAUDE.md  README.md  run_pipeline.py  requirements.txt  .gitignore  .env.example
   collectors/   # valorant_api.py, pro_data.py, youtube.py
-  cleaning/
-  db/           # schema.sql, loading scripts
-  analysis/     # index.py, clusters.py, forecast.py
-  app/          # Streamlit dashboard
-  data/raw/     # untouched downloads
-  requirements.txt
-  .gitignore    # .venv/  .env  __pycache__/
+  cleaning/     # common.py, load_agents.py, load_maps.py, load_pro_pick_rates.py
+  db/schema/    # one .sql per loader (agents, maps, pro)
+  analysis/     # features.py (training table), forecast.py (model + ranges), clusters.py
+  app/          # streamlit_app.py
+  data/raw/     # untouched downloads + manual/event_dates.csv (kaggle_vct/ is git-ignored)
+  data/results/ # CSVs the app reads
 ```
 
 ## Analysis components
@@ -84,6 +90,7 @@ valreg/
 - Cluster agents into 4 or 5 playstyles (k-means or hierarchical), and name the clusters.
 - Optional quiz: the user's answers build a preference vector, matched to agents by similarity. For "on each map," use real pro pick rates by map as the popularity signal.
 - Describe the quiz honestly as a **matching recommender**, not a validated predictor, because there is no player-level data linking quiz answers to picks.
+- **Status (2026-11-22):** first draft in `analysis/clusters.py`. Traits come from keywords in valorant-api ability descriptions; k-means picks k=5 by silhouette, but separation is weak (silhouette 0.18) and some tags are wrong (e.g. Sova lands in "Mobility"). Next: review the tags by hand.
 
 ### 3. Forecast (headline model)
 - **Target:** an agent's pick rate on a given map at the next pro event.
@@ -97,26 +104,32 @@ valreg/
   - Rows with no previous value (~9%: first phase, new agents, new maps) are **dropped**. All models are scored on the same rows.
   - Validation: **walk-forward** over each phase from 2025 on (train on all earlier phases, predict the phase, step forward).
   - v1 features leave out days since release and patch changes (data missing); add them later and measure whether they help.
+- **Changed later on 2026-11-22 (Claude, while I was away; review these):**
+  - Target is now **phase-level**: an agent's pick rate on a map across a whole phase, all events combined (weighted by maps played). Single regional events rest on few maps and are too noisy. 3,348 rows.
+  - Model selection is honest: candidates compared on **2024 (validation)**, the winner scored once on **2025-2026 (test)**.
+  - Chosen model: **median linear regression** (quantile regression at 0.5; minimizes absolute error to match MAE) on previous pick rate, 3-appearance rolling average, role, map. Extra features (agent's all-maps rate, sample size, gap, appearances, years in pro, event type) did not help on validation. Gradient boosting was worse.
+  - Test result: MAE **8.43** vs "same as last" baseline **8.54** (only 0.12 better; essentially a tie). Hard rows (not 0%→0%): 11.8 vs 12.1.
+  - 80% range = split conformal: 80th percentile of the previous 3 phases' misses. Test coverage 78%, average width 18.9 pts. Separate margins per prediction size were tried and made ranges wider.
 
 ## Status
 
 - Environment set up (Python, VS Code, Git, GitHub, venv). Repo is on GitHub with `requirements.txt`, `CLAUDE.md` and `.gitignore` (2026-11-22).
 - The first push had failed because git needed a GitHub sign-in that Claude's session cannot answer, not because the remote was non-empty (it was empty). **Claude cannot push for me: I run `git push` myself** in my own terminal.
 - `requirements.txt` was originally UTF-16 (from `pip freeze >` in PowerShell 5.1), which git treats as binary. It was re-encoded to UTF-8. Regenerate it with `pip freeze | Out-File -Encoding utf8 requirements.txt`.
-- Day 1 code drafted (`collectors/valorant_api.py`): fetches playable agents from `https://valorant-api.com/v1/agents?isPlayableCharacter=true` and saves uuid, name and role into an `agents` table in SQLite. The save logic was tested with fake data, but **the live API call has not been tested yet.** **The file is not in the repo yet** (`collectors/` was empty on 2026-11-22); find the draft or rebuild it.
+- Done on 2026-11-22 (much of it written by Claude at my request, so **I still need to learn it**): collectors for valorant-api, Kaggle and YouTube; cleaning into SQLite; event phases; training table; walk-forward model selection and testing; 80% ranges; playstyle clusters (draft); Streamlit app (Forecast, Meta trends, Playstyles, Accuracy & method); README.
+- On a new computer: `git pull`, then `python collectors/pro_data.py` (Kaggle data isn't in git), then `python run_pipeline.py`.
+- Never commit with a Claude co-author line.
 
 ## Suggested order of small tasks
 
-1. ~~Fix the first push and confirm the repo is on GitHub.~~ Done 2026-11-22.
-2. Run the agents collector and inspect the database with a SQL query.
-3. Load `agents` in pandas, and try `groupby` on role.
-4. Write the maps collector (filter to the competitive pool).
-5. Download the Kaggle dataset into `data/raw/`, load it and inspect it.
-6. Cleaning step by step, then load into SQLite.
-7. First plot, then a one-page Streamlit app.
-8. YouTube API key, one search, then views/day for one agent, then all agents across several days.
-9. Popularity Index, baseline forecast, linear regression, gradient boosting, clustering, quiz (optional).
-10. README with screenshots, deployment, and a short write-up of one hard bug and how I fixed it (for interviews).
+1. ~~Repo on GitHub; collectors; cleaning into SQLite; Kaggle data; first app; baseline forecast and regression.~~ Done 2026-11-22.
+2. **Learn what was built**, one file per session: `features.py` (`history()` and `merge_asof`: how the future is kept out), `forecast.py` (walk-forward, validation vs test, `add_range()`), `clusters.py`, the app.
+3. Check the phase order on Liquipedia by hand (especially the 2023 Champions China Qualifier) and vlr.gg's definition of "pick rate".
+4. Patch history by hand from patch notes, then measure if it improves the forecast on 2024 validation.
+5. Review the playstyle trait tags by hand; rerun `analysis/clusters.py`.
+6. YouTube API key -> run `collectors/youtube.py` -> write a YouTube cleaning script -> Popularity Index.
+7. Add screenshots to the README; deploy on Streamlit Community Cloud.
+8. Optional: quiz.
 
 ## Definition of done for each task
 

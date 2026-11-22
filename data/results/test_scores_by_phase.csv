@@ -1,0 +1,10 @@
+step,year,phase,phase_name,rows,mae,mae_nontrivial,coverage,width
+11,2025,1,VCT 2025: Kickoff (all regions),168.0,8.9625,11.2644,0.7381,16.4833
+12,2025,2,Valorant Masters Bangkok 2025,189.0,11.1845,15.6213,0.6561,18.6384
+13,2025,3,VCT 2025: Stage 1 (all regions),183.0,6.4617,9.4192,0.8798,20.2104
+14,2025,4,Valorant Masters Toronto 2025,186.0,9.9665,13.9882,0.7688,20.5682
+15,2025,5,VCT 2025: Stage 2 (all regions),162.0,5.8458,8.4176,0.8765,21.6784
+16,2025,6,Valorant Champions 2025,189.0,7.7139,11.1156,0.7566,17.4888
+17,2026,1,VCT 2026: Kickoff (all regions),186.0,8.5086,11.7259,0.7742,18.5449
+18,2026,2,Valorant Masters Santiago 2026,203.0,6.4831,9.3424,0.8128,18.5821
+19,2026,3,VCT 2026: Stage 1 (all regions),226.0,10.1685,14.2997,0.7743,18.5726

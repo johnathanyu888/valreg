@@ -1,6 +1,7 @@
-"""Rebuild the whole database from data/raw/ by running every cleaning script in order.
+"""Rebuild everything from data/raw/: the database, then the analysis results for the app.
 
-Order matters: pro pick rates are joined to agent and map UUIDs, so those load first.
+Order matters: pro pick rates are joined to agent and map UUIDs, so those load first;
+the analysis reads the finished database.
 Collecting new raw data is a separate step (the scripts in collectors/).
 
 Run from the project folder:
@@ -11,16 +12,19 @@ import subprocess
 import sys
 from pathlib import Path
 
-CLEANING_DIR = Path(__file__).resolve().parent / "cleaning"
+ROOT = Path(__file__).resolve().parent
 
 STEPS = [
-    "load_agents.py",
-    "load_maps.py",
-    "load_pro_pick_rates.py",
+    "cleaning/load_agents.py",
+    "cleaning/load_maps.py",
+    "cleaning/load_pro_pick_rates.py",
+    "analysis/forecast.py",   # chooses and trains the model, writes data/results/
+    "analysis/clusters.py",   # agent playstyle groups, writes data/results/agent_clusters.csv
 ]
 
 if __name__ == "__main__":
     for step in STEPS:
-        # check=True stops the pipeline if a step fails, instead of loading on top of bad data.
-        subprocess.run([sys.executable, str(CLEANING_DIR / step)], check=True)
-    print("Pipeline finished.")
+        print(f"\n=== {step} ===", flush=True)
+        # check=True stops the pipeline if a step fails, instead of building on top of bad data.
+        subprocess.run([sys.executable, str(ROOT / step)], check=True)
+    print("\nPipeline finished.")
