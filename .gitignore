@@ -6,3 +6,6 @@
 
 # Python's compiled-code cache, regenerated automatically
 __pycache__/
+
+# Kaggle VCT dataset: ~160 MB, too big for GitHub. Re-download it (see data/raw/README.md)
+data/raw/kaggle_vct/
