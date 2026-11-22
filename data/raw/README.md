@@ -17,6 +17,16 @@ To rebuild on another computer, run `python collectors/pro_data.py` from the pro
 It downloads the zip and extracts only `vct_*/agents/*.csv` and `all_ids/*.csv` (the full
 archive is ~1.3 GB unzipped, mostly per-match player stats this project doesn't use).
 
+## manual/event_dates.csv
+
+Hand-entered season order for the top-tier 2023-2026 events, because the Kaggle data has no
+dates. `phase` is each event's position in its season (1 = first); events with the same phase
+ran at the same time (e.g. the four regional Stage 1 leagues). This is what the forecast uses
+to order events. `start_date`/`end_date` (YYYY-MM-DD) are optional extras, filled where known.
+Names must match the Kaggle tournament names exactly.
+Put the page each date came from in `source`. Liquipedia's terms forbid automated access to
+its pages, so look dates up there in a browser and type them in; Wikipedia has a few.
+
 ## maps_YYYY-MM-DD.json
 
 Saved by `collectors/valorant_api.py`. Includes non-competitive maps (Skirmish, The Range,

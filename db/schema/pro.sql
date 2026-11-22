@@ -5,7 +5,11 @@ DROP TABLE IF EXISTS events;
 CREATE TABLE events (
     event_id INTEGER PRIMARY KEY,
     year     INTEGER NOT NULL,
-    name     TEXT NOT NULL,       -- e.g. 'Valorant Masters Santiago 2026'
+    name       TEXT NOT NULL,     -- e.g. 'Valorant Masters Santiago 2026'
+    phase      INTEGER,           -- order within the season (1 = first); same phase = same time.
+                                  -- From data/raw/manual/event_dates.csv; NULL = not in the forecast scope
+    start_date TEXT,              -- YYYY-MM-DD from data/raw/manual/event_dates.csv; NULL if not dated
+    end_date   TEXT,              -- only dated events can be used by the forecast
     UNIQUE (year, name)           -- some names repeat across years (e.g. 2021 and 2022 LCQs)
 );
 
