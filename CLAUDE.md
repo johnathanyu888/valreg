@@ -91,6 +91,12 @@ valreg/
 - **Validation:** split by time (train on earlier events, test on later). Never shuffle randomly. Walk-forward validation preferred.
 - **Models, in order:** (a) baseline "same as last event," (b) rolling-average baseline, (c) linear regression, (d) gradient boosting (scikit-learn). Report **MAE in percentage points** for each and only claim improvement if the model truly beats the baselines.
 - Explain regression, gradient boosting and train/test splitting to me when we reach them.
+- **Decided 2026-11-22:**
+  - Scope: the 49 top-tier 2023-2026 events. Order comes from `phase` in `data/raw/manual/event_dates.csv` (year, then phase; same phase = concurrent).
+  - Previous pick rate = agent's pick rate on that map at its **last earlier appearance** (most recent earlier phase where the agent-map was played). Concurrent events in a phase are combined, weighted by `maps_played`.
+  - Rows with no previous value (~9%: first phase, new agents, new maps) are **dropped**. All models are scored on the same rows.
+  - Validation: **walk-forward** over each phase from 2025 on (train on all earlier phases, predict the phase, step forward).
+  - v1 features leave out days since release and patch changes (data missing); add them later and measure whether they help.
 
 ## Status
 
