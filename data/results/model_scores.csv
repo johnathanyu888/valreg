@@ -1,0 +1,6 @@
+model,rows,mae,mae_nontrivial,coverage,width,phases_won,phases
+same_as_last,4467.0,9.5713,15.8586,0.7663,20.6686,0,9
+rolling_avg_3,4467.0,10.5615,16.3945,0.7846,24.5619,0,9
+linear_regression,4467.0,10.1146,15.4551,0.7864,22.8271,0,9
+median_linear,4467.0,9.504,15.4774,0.7761,20.958,5,9
+gradient_boosting,4467.0,10.2253,15.3314,0.7855,22.4954,1,9

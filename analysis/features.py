@@ -77,6 +77,24 @@ def build_training_table():
     return table.sort_values(["step", "event", "map_name", "agent"]).reset_index(drop=True)
 
 
+def next_phase_features():
+    """Feature rows for the phase AFTER the newest one in the data, to forecast it.
+
+    The next event's map pool isn't known yet, so this uses the maps played in the newest
+    phase, and every agent with history on each of those maps.
+    """
+    rows = load_rows()
+    last_step = rows["step"].max()
+    hist = history(rows)
+    latest = (hist.sort_values("available_from")
+              .groupby(["map_uuid", "agent_uuid"], as_index=False).last())
+    pool = rows.loc[rows["step"] == last_step, ["map_uuid", "map_name"]].drop_duplicates()
+    agents = rows[["agent_uuid", "agent", "role"]].drop_duplicates()
+    nxt = latest.merge(pool, on="map_uuid").merge(agents, on="agent_uuid")
+    nxt["step"] = last_step + 1
+    return nxt.drop(columns="available_from").sort_values(["map_name", "agent"]).reset_index(drop=True)
+
+
 if __name__ == "__main__":
     all_rows = load_rows()
     table = build_training_table()
