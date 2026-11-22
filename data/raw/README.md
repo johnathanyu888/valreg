@@ -13,12 +13,16 @@ community-run, not affiliated with Riot Games). One file per run.
 Kaggle ref: `ryanluong1/valorant-champion-tour-2021-2023-data`. Downloaded 2026-11-22
 (dataset last updated 2026-06-26).
 
-To rebuild on another computer, in PowerShell from the project folder:
+To rebuild on another computer, run `python collectors/pro_data.py` from the project folder.
+It downloads the zip and extracts only `vct_*/agents/*.csv` and `all_ids/*.csv` (the full
+archive is ~1.3 GB unzipped, mostly per-match player stats this project doesn't use).
 
-```powershell
-New-Item -ItemType Directory -Force data\raw\kaggle_vct
-Invoke-WebRequest "https://www.kaggle.com/api/v1/datasets/download/ryanluong1/valorant-champion-tour-2021-2023-data" -OutFile data\raw\kaggle_vct\vct_2021-2026_2026-11-22.zip
-```
+## maps_YYYY-MM-DD.json
 
-Then extract only `vct_*/agents/*.csv` and `all_ids/*.csv` into `data/raw/kaggle_vct/`
-(the full archive is ~1.3 GB unzipped, mostly per-match player stats this project doesn't use).
+Saved by `collectors/valorant_api.py`. Includes non-competitive maps (Skirmish, The Range,
+deathmatch maps); filter them out in cleaning.
+
+## youtube_YYYY-MM-DD.json
+
+Saved by `collectors/youtube.py` (YouTube Data API v3, needs `YOUTUBE_API_KEY` in `.env`).
+One search per agent and competitive map, plus view counts for the videos found.
